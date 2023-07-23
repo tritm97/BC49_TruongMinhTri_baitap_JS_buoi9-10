@@ -29,13 +29,14 @@ function themNhanVien() {
 
         nhanVien[arrIdInput[i]] = value;
     }
-    console.log(nhanVien);
+    console.log(nhanVien['tknv'].length);
 
     // dùng valid để check xem có nên thêm nhanVien vào mảng hay không
     var valid = true;
-    valid = valid && kiemTraDuLieuRong(arrIdInput, arrNotiInput, nhanVien) && kiemTraEmail(nhanVien['email'], 'tbEmail');
+    valid = valid && kiemTraDuLieuRong(arrIdInput, arrNotiInput, nhanVien) && kiemTraEmail(nhanVien['email'], 'tbEmail') && kiemTraTaiKhoan(nhanVien['tknv'], 'tbTKNV') && kiemTraTen(nhanVien['name'], 'tbTen') && kiemTraPassword(nhanVien['password'], 'tbMatKhau') && kiemTraNgayThang(nhanVien['datepicker'], 'tbNgay') && kiemTraLuongCB(nhanVien['luongCB'], 'tbLuongCB') && kiemTraChucVu(nhanVien['chucvu'], 'tbChucVu') && kiemTraGioLam(nhanVien['gioLam'], 'tbGiolam');
 
-    console.log(valid);
+    console.log(nhanVien['chucvu'].length == 0);
+    console.log(typeof nhanVien['chucvu']);
 
     
 
@@ -153,9 +154,11 @@ function capNhatNhanVien() {
     console.log(nhanVien);
 
     // dùng valid để check xem có nên thêm nhanVien vào mảng hay không
+    // cập nhật thì không chỉnh sửa tknv nên không kiểm tra
     var valid = true;
-    valid = valid && kiemTraDuLieuRong(arrIdInput, arrNotiInput, nhanVien) && kiemTraEmail(nhanVien['email'], 'tbEmail');
+    valid = valid && kiemTraDuLieuRong(arrIdInput, arrNotiInput, nhanVien) && kiemTraEmail(nhanVien['email'], 'tbEmail') && kiemTraTen(nhanVien['name'], 'tbTen') && kiemTraPassword(nhanVien['password'], 'tbMatKhau') && kiemTraNgayThang(nhanVien['datepicker'], 'tbNgay') && kiemTraLuongCB(nhanVien['luongCB'], 'tbLuongCB') && kiemTraChucVu(nhanVien['chucvu'], 'tbChucVu') && kiemTraGioLam(nhanVien['gioLam'], 'tbGiolam');
 
+    console.log(kiemTraGioLam(nhanVien['gioLam'], 'tbGiolam'));
     console.log(valid);
     // nếu valid == false tức là có input còn trống nên sẽ không cho thêm dữ liệu vào mảng, nếu valid == true thì cho dữ liệu thêm vào mảng và hiển thị lên giao diện
     if (valid) {
