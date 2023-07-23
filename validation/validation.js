@@ -16,6 +16,7 @@ function kiemTraDuLieuRong(arrIdInput, arrNotiInput, nhanVien) {
 }
 
 function kiemTraEmail(valueEmail, notiInput) {
+    var valid = true;
     // biến lưu chuỗi regex
     var regexEmail = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
@@ -31,4 +32,5 @@ function kiemTraEmail(valueEmail, notiInput) {
             valid = valid && true;
         }
     }
+    return valid;
 }

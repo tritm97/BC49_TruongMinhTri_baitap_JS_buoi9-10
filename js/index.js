@@ -34,6 +34,7 @@ function themNhanVien() {
     // dùng valid để check xem có nên thêm nhanVien vào mảng hay không
     var valid = true;
     valid = valid && kiemTraDuLieuRong(arrIdInput, arrNotiInput, nhanVien) && kiemTraEmail(nhanVien['email'], 'tbEmail');
+
     console.log(valid);
 
     
@@ -150,21 +151,35 @@ function capNhatNhanVien() {
         nhanVien[arrIdInput[i]] = value;
     }
     console.log(nhanVien);
-    // tìm kiếm tới vị trí của dữ liệu nhân viên cũ đang đứng
-    for (var z = 0; z < arrNhanVien.length; z++) {
-        if (nhanVien.tknv == arrNhanVien[z].tknv) {
-            arrNhanVien[z] = nhanVien;
-            // mở lại input tknv 
-            document.getElementById('tknv').readOnly = false;
-            // clear hết input sau khi cập nhật
-            document.getElementById('formNhanVien').reset();
-            // gọi render để cập nhật lại dữ liệu mới nhất lên giao diện
-            luuDuLieuLocal();
-            renderGiaoDien();
-            // sau khi cập nhật xong display-none cho nút cập nhật
-            document.getElementById('btnCapNhat').style.display = 'none';
-            document.getElementById('btnThemNV').style.display = 'inline-block';
+
+    // dùng valid để check xem có nên thêm nhanVien vào mảng hay không
+    var valid = true;
+    valid = valid && kiemTraDuLieuRong(arrIdInput, arrNotiInput, nhanVien) && kiemTraEmail(nhanVien['email'], 'tbEmail');
+
+    console.log(valid);
+    // nếu valid == false tức là có input còn trống nên sẽ không cho thêm dữ liệu vào mảng, nếu valid == true thì cho dữ liệu thêm vào mảng và hiển thị lên giao diện
+    if (valid) {
+        // tìm kiếm tới vị trí của dữ liệu nhân viên cũ đang đứng
+        for (var z = 0; z < arrNhanVien.length; z++) {
+            if (nhanVien.tknv == arrNhanVien[z].tknv) {
+                arrNhanVien[z] = nhanVien;
+                // mở lại input tknv 
+                document.getElementById('tknv').readOnly = false;
+                // clear hết input sau khi cập nhật
+                document.getElementById('formNhanVien').reset();
+                // gọi render để cập nhật lại dữ liệu mới nhất lên giao diện
+                luuDuLieuLocal();
+                renderGiaoDien();
+                // sau khi cập nhật xong display-none cho nút cập nhật
+                document.getElementById('btnCapNhat').style.display = 'none';
+                document.getElementById('btnThemNV').style.display = 'inline-block';
+            }
         }
     }
+
+
+
+
+    
 };
 document.getElementById('btnCapNhat').onclick = capNhatNhanVien;
