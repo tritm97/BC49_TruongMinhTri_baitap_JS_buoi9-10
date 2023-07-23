@@ -177,4 +177,3 @@ function kiemTraGioLam(valueGioLam, notiGioLam) {
     };
     return valid;
 }
-

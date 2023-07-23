@@ -8,25 +8,14 @@ var arrNotiInput = [
 
 var arrNhanVien = [];
 
-
-
 // thêm nhân viên
 function themNhanVien() {
-    
-    
-
     // tạo ra 1 đối tượng nhanVien từ lớp đối tượng NhanVien 
     var nhanVien = new NhanVien();
     
     // dùng vòng lặp chạy lấy dữ liệu
     for (var i = 0; i < arrIdInput.length; i++) {
         var value = document.getElementById(arrIdInput[i]).value;
-
-        // if (value == '') {
-        //     alert('Vui lòng nhập dữ liệu');
-        //     console.log(arrIdInput[i]);
-        // }
-
         nhanVien[arrIdInput[i]] = value;
     }
     console.log(nhanVien['tknv'].length);
@@ -38,12 +27,6 @@ function themNhanVien() {
     console.log(nhanVien['gioLam']);
     console.log(typeof nhanVien['gioLam']);
 
-    
-
-    
-    
-
-
     // nếu valid == false tức là có input còn trống nên sẽ không cho thêm dữ liệu vào mảng, nếu valid == true thì cho dữ liệu thêm vào mảng và hiển thị lên giao diện
     if (valid) {
         arrNhanVien.push(nhanVien);
@@ -52,18 +35,7 @@ function themNhanVien() {
         // clear dữ liệu đã nhập sau khi bấm thêm nhân viên
         document.getElementById('formNhanVien').reset();
     } 
-
-    /*
-    arrNhanVien.push(nhanVien);
-    luuDuLieuLocal();
-    renderGiaoDien();
-    
-
-    // clear dữ liệu đã nhập sau khi bấm thêm nhân viên
-    document.getElementById('formNhanVien').reset();
-    */
 };
-
 
 // xoá nhân viên
 function xoaNhanVien(tkNV) {
@@ -81,10 +53,14 @@ function xoaNhanVien(tkNV) {
 };
 
 // renderGiaoDien
-function renderGiaoDien() {
+function renderGiaoDien(newArray) {
+    if (!newArray) {
+        newArray = arrNhanVien;
+    }
+
     var content = '';
-    for (var i = 0; i < arrNhanVien.length; i++) {
-        var nhanVien = arrNhanVien[i];
+    for (var i = 0; i < newArray.length; i++) {
+        var nhanVien = newArray[i];
 
         content += `
         <tr>
@@ -179,10 +155,25 @@ function capNhatNhanVien() {
             }
         }
     }
-
-
-
-
-    
 };
 document.getElementById('btnCapNhat').onclick = capNhatNhanVien;
+
+// tìm kiếm ngay khi nhập từng ký tự vào
+function timKiemNhanVien() {
+    // chuyển đổi dữ liệu nhập vào về dạng chữ thường và loại bỏ khoảng cách
+    var keyword = event.target.value.toLowerCase().trim();
+    // loại bỏ các dấu trong tiếng Việt
+    var newKeyWord = removeVietnameseTones(keyword);
+    console.log(newKeyWord);
+
+    var arrTimKiem = [];
+    // hàm giúp kiểm tra xem ký tự này có nằm trong chuỗi đó hay không - includes()
+    for (var i = 0; i < arrNhanVien.length; i++) {
+        var xepLoaiNhanVien = arrNhanVien[i].xepLoaiNV.toLowerCase().trim();
+        var newXepLoaiNhanVien = removeVietnameseTones(xepLoaiNhanVien);
+        if (newXepLoaiNhanVien.includes(newKeyWord)) {
+            arrTimKiem.push(arrNhanVien[i]);
+        }
+    }
+    renderGiaoDien(arrTimKiem);
+}
