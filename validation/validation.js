@@ -75,7 +75,7 @@ function kiemTraPassword(valuePassword, notiPassword) {
         valid = valid && true;
     } else {
         document.getElementById(notiPassword).style.display = 'inline-block';
-        document.getElementById(notiPassword).innerHTML = 'Password phải có 6 - 10 ký tự (bao gồm ít nhất 1 ký tự số, 1 ký tự in hoa, 1 ký tự đặc biệt';
+        document.getElementById(notiPassword).innerHTML = 'Password phải có 6 - 10 ký tự (bao gồm ít nhất 1 ký tự số, 1 ký tự in hoa, 1 ký tự đặc biệt)';
         valid = valid && false;
     }
     return valid;
