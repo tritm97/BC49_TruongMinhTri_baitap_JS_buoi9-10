@@ -35,8 +35,8 @@ function themNhanVien() {
     var valid = true;
     valid = valid && kiemTraDuLieuRong(arrIdInput, arrNotiInput, nhanVien) && kiemTraEmail(nhanVien['email'], 'tbEmail') && kiemTraTaiKhoan(nhanVien['tknv'], 'tbTKNV') && kiemTraTen(nhanVien['name'], 'tbTen') && kiemTraPassword(nhanVien['password'], 'tbMatKhau') && kiemTraNgayThang(nhanVien['datepicker'], 'tbNgay') && kiemTraLuongCB(nhanVien['luongCB'], 'tbLuongCB') && kiemTraChucVu(nhanVien['chucvu'], 'tbChucVu') && kiemTraGioLam(nhanVien['gioLam'], 'tbGiolam');
 
-    console.log(nhanVien['chucvu'].length == 0);
-    console.log(typeof nhanVien['chucvu']);
+    console.log(nhanVien['gioLam']);
+    console.log(typeof nhanVien['gioLam']);
 
     
 

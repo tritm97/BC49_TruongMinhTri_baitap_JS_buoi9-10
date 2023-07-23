@@ -128,15 +128,20 @@ function kiemTraNgayThang(valueNgayThang, notiNgayThang) {
 function kiemTraLuongCB(valueLuongCB, notiLuongCB) {
     var valid = true;
     var luongCB = valueLuongCB *1;
-    if (luongCB >= 1e+6 && luongCB <= 20e+6) {
-        valid = valid && true;
-        document.getElementById(notiLuongCB).style.display = 'none';
-        document.getElementById(notiLuongCB).innerHTML = '';
-    } else {
+    if (luongCB < 1e+6) {
         valid = valid && false;
         document.getElementById(notiLuongCB).style.display = 'inline-block';
         document.getElementById(notiLuongCB).innerHTML = 'Số lương cơ bản không đúng';
-    }
+    } else if (luongCB > 20e+6) {
+        valid = valid && false;
+        document.getElementById(notiLuongCB).style.display = 'inline-block';
+        document.getElementById(notiLuongCB).innerHTML = 'Số lương cơ bản không đúng';
+    } else {
+        valid = valid && true;
+        document.getElementById(notiLuongCB).style.display = 'none';
+        document.getElementById(notiLuongCB).innerHTML = '';
+    };
+
     return valid;
 }
 
@@ -156,16 +161,20 @@ function kiemTraChucVu(valueChucVu, notiChucVu) {
 
 function kiemTraGioLam(valueGioLam, notiGioLam) {
     var valid = true;
-    var gioLam = valueGioLam *1;
-    if (gioLam >= 80 && gioLam <= 200) {
-        valid = valid && true;
-        document.getElementById(notiGioLam).style.display = 'none';
-        document.getElementById(notiGioLam).innerHTML = '';
-    } else {
+    var gioLamm = valueGioLam *1;
+    if (gioLamm < 80) {
         valid = valid && false;
         document.getElementById(notiGioLam).style.display = 'inline-block';
         document.getElementById(notiGioLam).innerHTML = 'Số giờ làm không đúng';
-    }
+    } else if (gioLamm > 200) {
+        valid = valid && false;
+        document.getElementById(notiGioLam).style.display = 'inline-block';
+        document.getElementById(notiGioLam).innerHTML = 'Số giờ làm không đúng';
+    } else {
+        valid = valid && true;
+        document.getElementById(notiGioLam).style.display = 'none';
+        document.getElementById(notiGioLam).innerHTML = '';
+    };
     return valid;
 }
 
